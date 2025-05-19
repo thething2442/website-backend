@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/prisma/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./deb.db"
+}
+
+enum PricingPlan {
+  FREE
+  BASIC
+  PREMIUM
+}
+
+model User {
+  id        String          @id @default(uuid())
+  firstname String?
+  lastname  String?
+  auth0Id   String?         @unique
+  webobject WebsiteObject[]
+}
+
+model WebsiteObject {
+  id      String       @id @default(uuid())
+  webname String?      @unique
+  webdata String? // JSON stored as string
+  pricing PricingPlan? // Enum for pricing plan
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+}
