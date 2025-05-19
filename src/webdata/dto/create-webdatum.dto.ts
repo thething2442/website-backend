@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsUUID } from 'class-validator';
+import { IsString, IsOptional, IsUUID,IsJSON } from 'class-validator';
 
 export class CreateWebsiteObjectDto {
   @IsOptional()
@@ -7,6 +7,7 @@ export class CreateWebsiteObjectDto {
 
   @IsOptional()
   @IsString()
+  @IsJSON()
   webdata?: string;
 
   // Optional userId to link to an existing user

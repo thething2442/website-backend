@@ -2,11 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { WebdataService } from './webdata.service';
 import { CreateWebsiteObjectDto } from './dto/create-webdatum.dto';
 import { UpdateWebdatumDto } from './dto/update-webdatum.dto';
-
 @Controller('webdata')
 export class WebdataController {
-  constructor(private readonly webdataService: WebdataService) {}
-
+  constructor(private readonly webdataService: WebdataService) { }
   @Post()
   create(@Body() createWebdatumDto: CreateWebsiteObjectDto) {
     return this.webdataService.create(createWebdatumDto);
